@@ -28,8 +28,6 @@ public class UserService {
             throw new RuntimeException("이미 아이디가 존재합니다.");
         }
 
-
-
     }
     // 이름으로 회원 조회
     public List<UserDTO> findUserByName(String name) {

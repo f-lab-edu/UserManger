@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/usermanager")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -30,24 +31,24 @@ public class UserController {
 
 
     // 회원가입
-    @PostMapping("/usermanager/user")
-    public void join(@RequestBody JoinUserDTO userDTO){
+    @PostMapping("/user")
+    public Long join(@RequestBody JoinUserDTO userDTO){
         User joinUser = User.builder().userId(userDTO.getUserId())
                 .gender(userDTO.getGender())
                 .name(userDTO.getName())
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
-        userService.joinUser(joinUser);
+        return userService.joinUser(joinUser);
 
     }
     // 유저 전체 조회
-    @GetMapping("/usermanager/users")
+    @GetMapping("/users")
     public List<UserDTO> retrieveAllUser(){
         return userService.findAllUser();
     }
 
     // 유저 한명 이름으로 조회
-    @GetMapping("/usermanager/user")
+    @GetMapping("/user")
     public List<UserDTO> retrieveUserByName(@RequestParam String name) {
         return userService.findUserByName(name);
     }

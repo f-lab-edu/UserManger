@@ -14,8 +14,6 @@ public class UserMysqlRepository implements UserRepository{
 
     private final EntityManager em;
 
-
-
     @Override
     public Long saveUser(User user) {
         em.persist(user);

@@ -1,7 +1,7 @@
 package kr.flab.usermanager.repository;
 
 import kr.flab.usermanager.domain.User;
-import kr.flab.usermanager.dto.UserDTO;
+import kr.flab.usermanager.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class UserMysqlRepository implements UserRepository{
-
+public class UserMysqlRepository implements UserRepository {
     private final EntityManager em;
 
     @Override
@@ -28,17 +27,20 @@ public class UserMysqlRepository implements UserRepository{
     public User findByUserId(String userId) {
         return em.createQuery("select u from User u where u.userId = :userId", User.class)
                 .setParameter("userId", userId)
-                .getResultStream().findFirst().orElse(null);
+                .getResultStream()
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
-    public List<UserDTO> findAll() {
-        return em.createQuery("select new kr.flab.usermanager.dto.UserDTO(u.id, u.name, u.gender, u.joinDate) from User u", UserDTO.class).getResultList();
+    public List<UserDto> findAll() {
+        return em.createQuery("select new kr.flab.usermanager.dto.UserDto(u.id, u.name, u.gender, u.joinDate) from User u", UserDto.class)
+                .getResultList();
     }
 
     @Override
-    public List<UserDTO> findByUserName(String name) {
-        return em.createQuery("select new kr.flab.usermanager.dto.UserDTO(u.id, u.name, u.gender, u.joinDate) from User u where u.name = :name", UserDTO.class)
+    public List<UserDto> findByUserName(String name) {
+        return em.createQuery("select new kr.flab.usermanager.dto.UserDto(u.id, u.name, u.gender, u.joinDate) from User u where u.name = :name", UserDto.class)
                 .setParameter("name", name)
                 .getResultList();
     }

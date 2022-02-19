@@ -6,9 +6,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity @Table(name = "users")
+@Entity
+@Table(name = "users")
 @Getter
-@AllArgsConstructor @Builder
+@AllArgsConstructor
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseEntity {
 
@@ -18,7 +20,6 @@ public class User extends BaseEntity {
 
     @Column(name = "USER_NAME", length = 50, nullable = false)
     private String name; // 이름
-
 
     @Column(name = "LOGIN_ID", nullable = false)
     private String userId; // 유저 아이디

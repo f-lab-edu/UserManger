@@ -6,14 +6,11 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter @AllArgsConstructor
-public class UserDTO {
+@Getter
+@AllArgsConstructor
+public class UserDto {
     private Long id;
-
     private String name;
-
     private Gender gender;
-
     private LocalDateTime joinDate;
-
 }
